@@ -1,6 +1,14 @@
 $(function () {
+    let windowHeight = $(window).height();
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
+        if ($(this).scrollTop() > windowHeight) {
+            $('.scrolltop-icon').fadeIn();
+        } else {
+            $('.scrolltop-icon').fadeOut();
+        }
+    });
+    $("html,body").scroll(function () {
+        if ($(this).scrollTop() > windowHeight) {
             $('.scrolltop-icon').fadeIn();
         } else {
             $('.scrolltop-icon').fadeOut();
@@ -14,5 +22,7 @@ $(document).on("mouseout",".scrolltop-icon__image",function(){
     $(this).stop().removeClass("animate__bounce");
 });
 $(document).on("click",".scrolltop-icon__image",function () {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    $("html,body").stop().animate({
+        scrollTop:0
+    },1000);
 });
